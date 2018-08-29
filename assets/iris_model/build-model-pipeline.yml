@@ -3,10 +3,6 @@
 
 Description: Create a CodePipeline for a Machine Learning Model
 Parameters:
-  MLOpsBucket:
-    Type: String
-    Description: Name of the bucket for MLOps
-    Default: !Sub mlops-${AWS::Region}-${AWS::AccountId}
   RepoBranchName:
     Type: String
     Description: Name of the branch the code is located
@@ -52,8 +48,7 @@ Resources:
           - Name: AWS_DEFAULT_REGION
             Value: !Sub ${AWS::Region}
           - Name: TEMPLATE_BUCKET
-            Value:
-              Ref: MLOpsBucket
+            Value: !Sub mlops-${AWS::Region}-${AWS::AccountId}
           - Name: TEMPLATE_PREFIX
             Value: codebuild
       Tags:
@@ -257,8 +252,7 @@ Resources:
       RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/MLOps
       ArtifactStore:
           Type: S3
-          Location:
-            Ref: MLOpsBucket
+          Location: !Sub mlops-${AWS::Region}-${AWS::AccountId}
       Stages:
         -
           Name: Source
