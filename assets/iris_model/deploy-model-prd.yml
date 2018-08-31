@@ -62,7 +62,7 @@ Resources:
       
       ServiceNamespace: sagemaker
       TargetTrackingScalingPolicyConfiguration:
-        TargetValue: 75.0
+        TargetValue: 70.0
         ScaleInCooldown: 60
         ScaleOutCooldown: 60
         PredefinedMetricSpecification:
