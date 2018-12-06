@@ -25,14 +25,15 @@ Here you can find more information about [DevOps](https://aws.amazon.com/devops/
 
 You should have some basic experience with:
   - Train/test a ML model
-  - Python (scikit-learn)
-  - Jupyter Notebook
+  - Python ([scikit-learn](https://scikit-learn.org/stable/#))
+  - [Jupyter Notebook](https://jupyter.org/)
   - [AWS CodePipeline](https://aws.amazon.com/codepipeline/)
   - [AWS CodeCommit](https://aws.amazon.com/codecommit/)
   - [AWS CodeBuild](https://aws.amazon.com/codebuild/)
   - [Amazon ECR](https://aws.amazon.com/ecr/)
   - [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
   - [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
+
 
 Some experience working with the AWS console is helpful as well.
 
@@ -57,13 +58,12 @@ For parts 2 and 3 the following architecture will support the process. In part 2
 
 ![Build Docker Image](imgs/MLOps_BuildImage.jpg)
 
-For part 4 you'll make use of the following structure for training the model, testing it, deploying it in two different environments: DEV - QA/Development (simple endpoint) and PRD - Production (HA/Elastic endpoint).
-
 1. The **ML Developer** creates the assets for Docker Image based on Scikit Learn, using Sagemaker, and pushes all the assets to a Git Repo (CodeCommit);
-2. CodePipeline listens the push event of CodeCommit, gets the source code and launches CodeDeploy;
-3. CodeDeploy authenticates into ECR, build the Docker Image and pushes it into the ECR repository
+2. CodePipeline listens the push event of CodeCommit, gets the source code and launches CodeBuild;
+3. CodeBuild authenticates into ECR, build the Docker Image and pushes it into the ECR repository
 4. Done.
 
+For part 4 you'll make use of the following structure for training the model, testing it, deploying it in two different environments: DEV - QA/Development (simple endpoint) and PRD - Production (HA/Elastic endpoint).
 
 ![Train Deploy and Test a ML Model](imgs/MLOps_Train_Deploy_TestModel.jpg)
 
