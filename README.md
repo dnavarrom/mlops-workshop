@@ -2,7 +2,7 @@
 
 ## Introduction
 
-![Sagemaker <](imgs/eyecatch_sagemaker.png)
+<img align="left" src="imgs/eyecatch_sagemaker.png">
 
 Data Scientists and ML developers need more than a Jupyter notebook to create a ML model, test it, put into production and integrate it with a portal and/or a basic web/mobile application in a reliable and flexible way.
 
@@ -52,7 +52,7 @@ Parts 2, 3 and 4 are supported by automated pipelines that reads the assets prod
 
 ### Crisp DM
 
-![CRISP DM <](imgs/crisp.png)
+<img align="left" src="imgs/crisp.png">
 
 It is important to mention that the process above was based on an Industry process for Data Mining and Machine Learning called [CRISP-DM](https://en.wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining).
 
