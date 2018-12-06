@@ -59,7 +59,26 @@ For parts 2 and 3 the following architecture will support the process. In part 2
 
 For part 4 you'll make use of the following structure for training the model, testing it, deploying it in two different environments: DEV - QA/Development (simple endpoint) and PRD - Production (HA/Elastic endpoint).
 
+1. The **ML Developer** creates the assets for Docker Image based on Scikit Learn, using Sagemaker, and pushes all the assets to a Git Repo (CodeCommit);
+2. CodePipeline listens the push event of CodeCommit, gets the source code and launches CodeDeploy;
+3. CodeDeploy authenticates into ECR, build the Docker Image and pushes it into the ECR repository
+4. Done.
+
+
 ![Train Deploy and Test a ML Model](imgs/MLOps_Train_Deploy_TestModel.jpg)
+
+1. An ETL process or the ML Developer, prepares a new dataset for training the model and copies it into an S3 Bucket;
+2. CodePipeline listens to this S3 Bucket, calls a Lambda function for start training a job in Sagemaker;
+3. The lambda function send a training job to Sagemaker, enables a rule in CloudWatchEvents that will check each minute, through another Lambda Function, if the training job has finished or failed
+4. CodePipeline will awaits for the training approval with success or failure;
+5. This lambda will approve or reject this pipeline, based on the Sagemaker results;
+6. If rejected the pipeline stops here; If approved it goes to the next stage;
+7. CodePipeline calls CloudFormation to deploy a model in a Development/QA environment into Sagemaker;
+8. After finishing the deployment in DEV/QA, CodePipeline awaits for a manual approval
+9. An approver approves or rejects the deployment. If rejected the pipeline stops here; If approved it goes to the next stage;
+10. CodePipeline calls CloudFormation to deploy a model into production. This time, the endpoint will count with an AutoScaling policy for HA and Elasticity.
+11. Done.
+
 
 ### Crisp DM
 
