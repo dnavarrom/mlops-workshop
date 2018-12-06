@@ -109,3 +109,12 @@ First, you need to execute a CloudFormation script to create all the components 
 Region| Launch
 ------|-----
 US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=AIWorkshop&templateURL=https://s3.amazonaws.com/spock.cloud/ai-workshop/m.yml)
+
+2. Then open the Jupyter Notebook instance in Sagemaker and start doing the exercises in the following order:
+
+    1. [Warmup](lab/00_Warmup/01_Basic\ model\ with\ a\ Builtin\ Algorithm.ipynb) 
+    2. [Build an Abstract ScikitLearn Docker Image](lab/01_BuildBaseImage/01_Creating%20a%20Scikit-Learn%20Base%20Image.ipynb)
+    3. [Build a Docker Image for your final ScikitLearn models](lab/02_BuildModelImage/01_Creating%20an%20Iris%20Model%20Image.ipynb)
+    4. [Train new model using your custom ScikitLearn model]()
+
+
