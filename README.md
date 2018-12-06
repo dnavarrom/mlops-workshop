@@ -76,5 +76,5 @@ First, you need to execute a CloudFormation script to create all the components 
 
 Region| Launch
 ------|-----
-US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=AIWorkshop&templateURL=https://raw.githubusercontent.com/samir-souza/mlops-workshop/master/assets/m.yml)
+US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=AIWorkshop&templateURL=https://s3.amazonaws.com/spock.cloud/ai-workshop/m.yml)
 
