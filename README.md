@@ -6,13 +6,12 @@
 
 Data Scientists and ML developers need more than a Jupyter notebook to create a ML model, test it, put into production and integrate it with a portal and/or a basic web/mobile application in a reliable and flexible way.
 
-----
+</br></br></br></br>
 
 There are two basic questions that you should consider when you start developing a ML model for a real Business Case:
 
-1) How long would it take your organization to deploy a change that involves a single line of code?
-
-2) Can you do this on a repeatable, reliable basis?
+1. How long would it take your organization to deploy a change that involves a single line of code?
+2. Can you do this on a repeatable, reliable basis?
 
 So, if you're not happy with the answers, MLOps is a concept that can help you: a) to create or improve the organization culture for CI/CD; b) to create an automated infrastructure that will support your processes.
 
@@ -52,6 +51,16 @@ In this workshop you'll implement and experiment a basic MLOps process, supporte
 
 Parts 2, 3 and 4 are supported by automated pipelines that reads the assets produced by the ML devoloper and execute/control the whole process.
 
+
+### Architecture
+For parts 2 and 3 the following architecture will support the process. In part 2 you'll create an Abstract ScikitLearn Docker Image. In part 3 you'll extend that Abscract image and create the final image using two distinct Scikit Learn algorithms.
+
+![Build Docker Image](imgs/MLOps_BuildImage.jpg)
+
+For part 4 you'll make use of the following structure for training the model, testing it, deploying it in two different environments: DEV - QA/Development (simple endpoint) and PRD - Production (HA/Elastic endpoint).
+
+![Train Deploy and Test a ML Model](imgs/MLOps_Train_Deploy_TestModel.jpg)
+
 ### Crisp DM
 
 <img align="left" src="imgs/crisp.png">
@@ -60,7 +69,7 @@ It is important to mention that the process above was based on an Industry proce
 
 CRISP-DM stands for “Cross Industry Standard Process – Data Mining” and is an excellent skeleton to build a data science project around.
 
-----
+</br></br></br></br></br></br></br>
 
 There are 6 phases to CRISP:
    - **Business understanding**: Don’t dive into the data immediately! First take some time to understand: Business objectives, Surrounding context, ML problem category.
@@ -81,4 +90,3 @@ First, you need to execute a CloudFormation script to create all the components 
 Region| Launch
 ------|-----
 US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=AIWorkshop&templateURL=https://s3.amazonaws.com/spock.cloud/ai-workshop/m.yml)
-
