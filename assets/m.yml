@@ -138,21 +138,21 @@ Resources:
             parameters="$parameters ParameterKey=ImageTagName,ParameterValue=%s"
 
             echo "Here, we'll create the scikit image pipeline"
-            
+
             aws cloudformation create-stack --stack-name scikit-base \
               --template-body file://assets/build-image.yml \
-              --parameters $(printf $parameters "scikit_base" "scikit-base" "latest" )
+              --parameters $(printf "$parameters" "scikit_base" "scikit-base" "latest" )
 
             echo "Finally we'll create iris-model pipeline"
             aws cloudformation create-stack --stack-name iris-model \
               --template-body file://assets/build-image.yml \
-              --parameters $(printf $parameters "iris_model" "iris-model" "latest" )
+              --parameters $(printf "$parameters" "iris_model" "iris-model" "latest" )
 
             parameters="$parameters ParameterKey=ModelName,ParameterValue=%s"
             parameters="$parameters ParameterKey=DatasetKeyPath,ParameterValue=%s"
             aws cloudformation create-stack --stack-name iris-train-pipeline \
               --template-body file://assets/train-model-pipeline.yml \
-              --parameters $(printf $parameters "iris_model" "iris-model" "latest" "iris-model" "training_jobs/iris_model" )
+              --parameters $(printf "$parameters" "iris_model" "iris-model" "latest" "iris-model" "training_jobs/iris_model" )
             
             echo "Done! Let's do some stuff with this env"
     DependsOn: 
