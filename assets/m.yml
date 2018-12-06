@@ -1,14 +1,21 @@
 Parameters:
   NotebookInstanceSubNetId:
     Type: AWS::EC2::Subnet::Id
+    Description: "Select any subnet id"
     AllowedPattern: ^subnet\-[a-zA-Z0-9]+$
     ConstraintDescription: "You need to inform any subnetid"
 
   NotebookInstanceSecGroupId:
     Type: List<AWS::EC2::SecurityGroup::Id>
+    Description: "Select the default security group"
     AllowedPattern: ^sg\-[a-zA-Z0-9]+$
     ConstraintDescription: "Select the default security group"
 
+  LoggedUser:
+    Type: String
+    Description: "Inform the userid that will operate this environment"
+    Default: awsstudent
+  
 Resources:
   MLOpsScikitImageRepo:
     Type: AWS::ECR::Repository
@@ -46,7 +53,7 @@ Resources:
           Action: "*"
           Resource: "*"
       Users:
-        - awsstudent
+        - !Ref LoggedUser
 
   IAWorkshopNotebookInstance:
     Type: "AWS::SageMaker::NotebookInstance"
@@ -89,8 +96,8 @@ Resources:
 
             echo "First the master branch"
             cd /tmp/mlops-temp
-            touch README.md
-            git add README.md
+            printf "version: 0.2\nphases:\n  build:\n    commands:\n      - echo 'dummy'\n" > buildspec.yml
+            git add buildspec.yml
             git commit -a -m ' - repo init'
             git push
 
@@ -126,14 +133,27 @@ Resources:
 
             cd /home/ec2-user/SageMaker/mlops-workshop
 
+            parameters="ParameterKey=RepoBranchName,ParameterValue=%s"
+            parameters="$parameters,ParameterKey=ImageRepoName,ParameterValue=%s"
+            parameters="$parameters,ParameterKey=ImageTagName,ParameterValue=%s"
+
             echo "Here, we'll create the scikit image pipeline"
-            aws cloudformation create-stack --stack-name scikit-base --template-body file://assets/scikit_base/build-image.yml
-            #aws cloudformation wait stack-create-complete --stack-name scikit-base
+            
+            aws cloudformation create-stack --stack-name scikit-base \
+              --template-body file://assets/scikit_base/build-image.yml \
+              --parameters $(printf $parameters "scikit_base" "scikit-base" "latest" )
 
             echo "Finally we'll create iris-model pipeline"
-            aws cloudformation create-stack --stack-name iris-model-pipeline --template-body file://assets/iris_model/build-model-pipeline.yml
-            #aws cloudformation wait stack-create-complete --stack-name iris-model-pipeline
+            aws cloudformation create-stack --stack-name iris-model \
+              --template-body file://assets/scikit_base/build-image.yml \
+              --parameters $(printf $parameters "iris_model" "iris-model" "latest" )
 
+            parameters="$parameters,ParameterKey=ModelName,ParameterValue=%s"
+            parameters="$parameters,ParameterKey=DatasetKeyPath,ParameterValue=%s"
+            aws cloudformation create-stack --stack-name iris-train-pipeline \
+              --template-body file://assets/iris_model/train-model-pipeline.yml \
+              --parameters $(printf $parameters "iris_model" "iris-model" "latest" "iris-model" "training_jobs/iris_model" )
+            
             echo "Done! Let's do some stuff with this env"
     DependsOn: 
       - IAWorkshopPolicy
