@@ -6,6 +6,8 @@
 
 Data Scientists and ML developers need more than a Jupyter notebook to create a ML model, test it, put into production and integrate it with a portal and/or a basic web/mobile application in a reliable and flexible way.
 
+----
+
 There are two basic questions that you should consider when you start developing a ML model for a real Business Case:
 
 1) How long would it take your organization to deploy a change that involves a single line of code?
@@ -57,6 +59,8 @@ Parts 2, 3 and 4 are supported by automated pipelines that reads the assets prod
 It is important to mention that the process above was based on an Industry process for Data Mining and Machine Learning called [CRISP-DM](https://en.wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining).
 
 CRISP-DM stands for “Cross Industry Standard Process – Data Mining” and is an excellent skeleton to build a data science project around.
+
+----
 
 There are 6 phases to CRISP:
    - **Business understanding**: Don’t dive into the data immediately! First take some time to understand: Business objectives, Surrounding context, ML problem category.
