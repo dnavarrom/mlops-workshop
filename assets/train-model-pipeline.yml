@@ -215,7 +215,7 @@ Resources:
   DeployPipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub mlops-${ModelName}
+      Name: !Sub mlops-train-${ModelName}
       RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/MLOps
       ArtifactStore:
           Type: S3
