@@ -110,11 +110,14 @@ Region| Launch
 ------|-----
 US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=AIWorkshop&templateURL=https://s3.amazonaws.com/spock.cloud/ai-workshop/m.yml)
 
-2. Then open the Jupyter Notebook instance in Sagemaker and start doing the exercises in the following order:
+1. Then open the Jupyter Notebook instance in Sagemaker and start doing the exercises:
 
-    1. [Warmup](lab/00_Warmup/01_Basic\ model\ with\ a\ Builtin\ Algorithm.ipynb) 
-    2. [Build an Abstract ScikitLearn Docker Image](lab/01_BuildBaseImage/01_Creating%20a%20Scikit-Learn%20Base%20Image.ipynb)
-    3. [Build a Docker Image for your final ScikitLearn models](lab/02_BuildModelImage/01_Creating%20an%20Iris%20Model%20Image.ipynb)
-    4. [Train new model using your custom ScikitLearn model]()
+  1. [Warmup](lab/00_Warmup/01_Basic%20model%20with%20a%20Builtin Algorithm.ipynb): This is a basic exercise for exploring the Sagemaker features like: training, deploying and optmizing a model. If you already have experience with Sagemaker, you can skip this exercise.
+  2. [Abstract Scikit-learn Image](lab/01_BuildBaseImage/01_Creating a Scikit-Learn Base Image.ipynb): Here we'll create an abstract docker image with the codebase for virtually any Scikit-learn algorithm. This is not the final Image. We need to complete this exercise before executing the next one.
+  3. [Concrete Scikit-learn models](lab/02_BuildModelImage/01_Creating an Iris Model Image.ipynb): In this exercise we'll inherits the Docker image from the previous step and create a concrete Docker image with two different algorithms: Logistic Regression and Random Forest Tree in a dispatcher architecture.
+    1. [Test the models locally](lab/02_BuildModelImage/02_Testing our local model server.ipynb): This is part of the exercise #3. You can use this jupyter to test your local WebService, to simulate how Sagemaker will call it when you ask it to create an Endpoint or launch a Batch job for you.
+  4. [Train your models](lab/02_BuildModelImage/03_Training our custom model.ipynb): In this exercise you'll use the training pipeline. You'll see how to train or retrain a particular model by just copying a zip file with the required assets to a given S3 bucket.
+    1. [Check Training progress and test](lab/02_BuildModelImage/04_Check Progress and Test the endpoint.ipynb): Here you can monitor the training process, approve the production deployment and test your endpoints.
+  5. [Stress Test](lab/03_TestingHacking/01_Stress Test.ipynb): Here you can execute stress tests to see how well your model is performing.
 
 
