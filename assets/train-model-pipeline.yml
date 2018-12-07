@@ -238,7 +238,7 @@ Resources:
                 S3Bucket: 
                   !Sub mlops-${AWS::Region}-${AWS::AccountId}
                 S3ObjectKey: 
-                  !Sub ${DatasetKeyPath}/trainingjob.json
+                  !Sub ${DatasetKeyPath}/trainingjob.zip
               RunOrder: 1
         -
           Name: Train
