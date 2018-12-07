@@ -35,7 +35,8 @@ Resources:
         - Key: Name
           Value: !Sub mlops-${AWS::Region}-${AWS::AccountId}
       AccessControl: Private
-      VersioningConfiguration: Enabled
+      VersioningConfiguration:
+        Status: Enabled
 
   MLOpsRepo:
     Type: AWS::CodeCommit::Repository
