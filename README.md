@@ -122,3 +122,21 @@ US East (N. Virginia) | [![Launch MLOps solution in us-east-1](imgs/cloudformati
     5. [Stress Test](lab/03_TestingHacking/01_Stress%20Test.ipynb): Here you can execute stress tests to see how well your model is performing.
 
 
+----
+# Cleaning
+
+In order to delete all the assets, created by this workshop, delete the following cloudformation stacks.
+![Cloudformation Stacks](imgs/cloudformationStacks.png)
+
+Just follow the reverse order
+1. AIWorkshop
+2. scikit-base
+3. iris-model
+4. iris-train-pipeline
+5. iris-train-pipeline-deploy-dev
+6. iris-train-pipeline-deploy-prd
+
+Also, delete the S3 bucket created by the first Cloudformation: **mlops-\<region>-\<accountid>**
+
+----
+Thank you!
