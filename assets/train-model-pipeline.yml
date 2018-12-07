@@ -44,7 +44,7 @@ Resources:
           codepipeline = boto3.client('codepipeline')
 
           def lambda_handler(event, context):
-              pipeline_name='mlops-${ModelName}'
+              pipeline_name='${AWS::StackName}'
               
               jobId = event["CodePipeline.job"]["id"]
               accountId = event["CodePipeline.job"]["accountId"]
@@ -130,7 +130,7 @@ Resources:
           codepipeline = boto3.client('codepipeline')
 
           def lambda_handler(event, context):
-            pipeline_name = 'mlops-${ModelName}'
+            pipeline_name = '${AWS::StackName}'
             result = None
             token = None
 
@@ -215,7 +215,7 @@ Resources:
   DeployPipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub mlops-train-${ModelName}
+      Name: !Sub ${AWS::StackName}
       RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/MLOps
       ArtifactStore:
           Type: S3
